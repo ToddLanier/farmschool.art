@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Black Ops One";
+  src: url("fonts/black-ops-one.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("fonts/lato-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --green: #3b8069;
+  --ink: #000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  background: var(--green);
+  color: var(--ink);
+}
+
+/* The slide keeps its 16:9 shape and scales to fit the window. Sizes in cqw are
+   the PDF's measurements as a percentage of its 720pt page width. */
+.slide {
+  position: relative;
+  width: min(100vw, 100dvh * 16 / 9);
+  aspect-ratio: 16 / 9;
+  container-type: inline-size;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.15cqw;
+  padding: 6.95cqw 1.15cqw 0;
+}
+
+.photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mark {
+  position: absolute;
+  left: 1.04cqw;
+  bottom: 2.05cqw;
+  font: 700 1.667cqw/1 "Black Ops One", sans-serif;
+  white-space: nowrap;
+}
+
+.copyright {
+  font-family: "Lato", sans-serif;
+}
+
+/* Phones in portrait: a 16:9 slide would be too small, so the photos stack. */
+@media (max-width: 700px) and (orientation: portrait) {
+  body {
+    display: block;
+  }
+
+  .slide {
+    width: auto;
+    aspect-ratio: auto;
+    container-type: normal;
+    padding: 16px;
+  }
+
+  .photos {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0;
+  }
+
+  .mark {
+    position: static;
+    margin-top: 16px;
+    font-size: 16px;
+  }
+}
