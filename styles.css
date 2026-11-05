@@ -15,6 +15,8 @@
 :root {
   --green: #3b8069;
   --ink: #000;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 * {
@@ -52,11 +54,13 @@ body {
   height: auto;
 }
 
+/* The 12px floor keeps the wordmark legible on phones in landscape. It only
+   applies below the PDF's 720pt width. */
 .mark {
   position: absolute;
   left: 1.04cqw;
   bottom: 2.05cqw;
-  font: 700 1.667cqw/1 "Black Ops One", sans-serif;
+  font: 700 max(1.667cqw, 12px)/1 "Black Ops One", sans-serif;
   white-space: nowrap;
 }
 
@@ -64,7 +68,8 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-/* Phones in portrait: a 16:9 slide would be too small, so the photos stack. */
+/* Phones in portrait: a 16:9 slide would be too small, so the photos stack. The
+   max-width keeps each 3:4 photo within the screen height on wider foldables. */
 @media (max-width: 700px) and (orientation: portrait) {
   body {
     display: block;
@@ -72,6 +77,8 @@ body {
 
   .slide {
     width: auto;
+    max-width: calc(100svh * 3 / 4);
+    margin-inline: auto;
     aspect-ratio: auto;
     container-type: normal;
     padding: 16px;
