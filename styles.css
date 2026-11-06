@@ -32,6 +32,10 @@ body {
   color: var(--ink);
 }
 
+a, a:visited {
+  color:black;
+}
+
 /* The slide keeps its 16:9 shape and scales to fit the window. Sizes in cqw are
    the PDF's measurements as a percentage of its 720pt page width. */
 .slide {
